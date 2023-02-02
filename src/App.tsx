@@ -6,6 +6,7 @@ import {AuthPage} from "./pages/auth/auth-page";
 import {useDispatch} from "react-redux";
 
 import './App.css';
+import {UserProjectsPage} from "./pages/user-projects/user-projects-page";
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
 
     React.useEffect(() => {
         const token = localStorage.getItem('token');
-        if(token === null){
+        if(token === null || token === ''){
             redirect('/auth');
             return;
         }
@@ -39,12 +40,13 @@ function App() {
             redirect('/auth');
             return;
         });
-    }, [redirect])
+    }, [redirect, dispatch])
 
     return (
         <div className="App">
           <Routes>
             <Route path={'/auth'} element={<AuthPage/>}/>
+            <Route path={'/my-projects'} element={<UserProjectsPage/>}/>
           </Routes>
         </div>
     );

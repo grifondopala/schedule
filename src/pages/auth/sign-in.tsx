@@ -32,7 +32,7 @@ export const SignIn = (props: SignInProps) => {
 
         promise.then((res) => {
             localStorage.setItem('token', res.data.token);
-            redirect('/');
+            redirect('/my-projects');
         }).catch((e) => {
             setError(e.response.data.error);
         })
