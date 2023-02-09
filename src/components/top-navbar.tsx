@@ -18,7 +18,7 @@ export function TopNavbar(){
     }
 
     return(
-        <div className={'sticky h-[60px] flex items-center w-full'}>
+        <div className={'fixed left-0 top-0 h-[60px] flex items-center w-full z-50 bg-lightgray2'}>
             <div className={'w-[calc(100%-200px)] flex flex-row items-center'}>
                 <NavLink href={'/home'} text={'Home'}/>
                 <NavLink href={'/my-projects'} text={'My Projects'}/>

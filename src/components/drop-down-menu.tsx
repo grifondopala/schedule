@@ -25,7 +25,7 @@ export function DropDownMenu(){
 
     return(
         <div className={'flex flex-col mr-4'}>
-            <div className={'flex items-center h-[40px] box-border p-[10px] border-2 rounded-md cursor-pointer w-[200px]'} onClick={dropDownHandler}>
+            <div className={'flex items-center h-[40px] box-border p-[10px] border-2 rounded-md cursor-pointer w-[200px] bg-white'} onClick={dropDownHandler}>
                 <p className={'w-[100%]'}>{user.first_name} {user.last_name}</p>
                 <img src={'/images/arrow-down-sign-to-navigate.png'} className={'w-[16px] h-[16px] ml-2'} alt={'arrow'}/>
             </div>

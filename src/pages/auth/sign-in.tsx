@@ -2,27 +2,23 @@ import * as React from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 
-import {InputForm} from "./elements/input-form"
-import {ContinueAuthBtn} from "./elements/continue-auth-btn"
-import {ErrorField} from "./elements/error-field";
+import { InputForm } from "./components/input-form"
+import { ContinueAuthBtn } from "./components/continue-auth-btn"
+import { ErrorField } from "./components/error-field";
+import { DispatchContext } from "./auth-page";
 
 const dataReducer = (state: any, action: any) => {
     return {...state, [action.dataKey]: action.value};
 }
 
-interface SignInProps{
-    setIsSignIn: () => void,
-}
-
-export const SignIn = (props: SignInProps) => {
+export const SignIn = ({setIsSignIn}:{setIsSignIn: () => void}) => {
 
     const [data, dispatch] = React.useReducer(dataReducer, {username: '',  password: ''});
     const [error, setError] = React.useState('');
 
     const redirect = useNavigate();
 
-    const sendData = (isActive: boolean) => {
-        if(!isActive) return;
+    const sendData = () => {
 
         const promise = axios({
             method: 'post',
@@ -43,8 +39,10 @@ export const SignIn = (props: SignInProps) => {
             <p className={'font-bold text-[24px]'}>Sign In</p>
             <ErrorField error={error}/>
             <div className={'mt-4'}>
-                <InputForm label={'Username'} value={data['username']} dispatch={dispatch} dataKey={'username'} type={'text'}/>
-                <InputForm label={'Password'} value={data['password']} dispatch={dispatch} dataKey={'password'} type={'password'}/>
+                <DispatchContext.Provider value={dispatch}>
+                    <InputForm type={'text'} label={'Username'} dataKey={'username'}/>
+                    <InputForm type={'password'} label={'Password'} dataKey={'password'}/>
+                </DispatchContext.Provider>
             </div>
             <div className={'flex flex-row items-center justify-start gap-2 mt-4'}>
                 <input className={'w-[18px] h-[18px] cursor-pointer'} type={'checkbox'}/>
@@ -52,7 +50,7 @@ export const SignIn = (props: SignInProps) => {
             </div>
             <div className={'flex items-center mt-4'}>
                 <ContinueAuthBtn text={'Log In'} data={data} onClickHandler={sendData}/>
-                <p className={'ml-4 min-[1150px]:hidden cursor-pointer hover:underline'} onClick={props.setIsSignIn}>Don't have an account?</p>
+                <p className={'ml-4 min-[1150px]:hidden cursor-pointer hover:underline'} onClick={setIsSignIn}>Don't have an account?</p>
             </div>
         </div>
     )

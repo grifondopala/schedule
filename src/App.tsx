@@ -5,8 +5,10 @@ import {Route, Routes, useNavigate} from "react-router-dom";
 import {AuthPage} from "./pages/auth/auth-page";
 import {useDispatch} from "react-redux";
 
-import './App.css';
 import {UserProjectsPage} from "./pages/user-projects/user-projects-page";
+import {ProjectPage} from "./pages/project/project-page";
+
+import './App.css';
 
 function App() {
 
@@ -47,6 +49,7 @@ function App() {
           <Routes>
             <Route path={'/auth'} element={<AuthPage/>}/>
             <Route path={'/my-projects'} element={<UserProjectsPage/>}/>
+            <Route path={'/projects/:id'} element={<ProjectPage />}/>
           </Routes>
         </div>
     );
