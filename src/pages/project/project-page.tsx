@@ -18,9 +18,8 @@ export function ProjectPage(){
     useEffect(() => {
         if(!id) return;
         let promise = axios({
-           method: "post",
-           url: `${process.env["REACT_APP_SERVER_IP"]}/projects/getProjectById`,
-           data: {project_id: parseInt(id)}
+           method: "get",
+           url: `${process.env["REACT_APP_SERVER_IP"]}/projects/getProjectById/${id}`,
         })
         promise.then((res) => {
             const project_info = {
@@ -28,7 +27,8 @@ export function ProjectPage(){
                 name: res.data.projectInfo.name,
                 description: res.data.projectInfo.description,
                 color: res.data.projectInfo.color,
-                icon_src: res.data.projectInfo.icon_src
+                icon_src: res.data.projectInfo.icon_src,
+                updated_at: res.data.projectInfo.UpdatedAt,
             };
             dispatch({type: 'set-project-info', project_info})
         })

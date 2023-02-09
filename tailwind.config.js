@@ -12,7 +12,6 @@ module.exports = {
             "lightgray1": "#f4f5f7",
             "darkgray1": "#ededee",
             "lightgray2": "#f6f6f6",
-            "bg-pink-700": "#ff0000"
         }
     },
   },

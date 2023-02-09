@@ -15,7 +15,7 @@ export function ProjectCard({id, name, description, color, icon_src}: ProjectCar
     const redirect = useNavigate();
 
     return(
-        <div className={`${color} h-[350px] w-[250px] rounded-md box-border p-[16px] cursor-pointer ml-auto mr-auto 
+        <div className={`${color} h-[350px] w-[250px] rounded-md box-border p-[16px] cursor-pointer ml-auto mr-auto
                         ${isHover ? 'transition-all delay-100 scale-[103%] ease-out' : 'transition-all delay-100 ease-out scale-100'}`}
              onMouseOver={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}
              onClick={() => redirect(`/projects/${id}`)}>

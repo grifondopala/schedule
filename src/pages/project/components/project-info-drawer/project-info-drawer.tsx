@@ -19,11 +19,16 @@ export function ProjectInfoDrawer(){
 
 
     const updateProjectInfo = () => {
+
+        const {updated_at: _, ...data} = project_info;
+
         const promise = axios({
-            method: 'post',
-            url: `${process.env['REACT_APP_SERVER_IP']}/projects/updateProjectInfo`,
-            data: {...project_info, updated_at: Date.now(), id: project_info.ID}
+            method: 'patch',
+            url: `${process.env['REACT_APP_SERVER_IP']}/projects/updateInformation`,
+            data
         })
+        promise.then((res) => console.log(res)).catch((e) => console.log(e))
+
     }
 
     React.useEffect(() => {

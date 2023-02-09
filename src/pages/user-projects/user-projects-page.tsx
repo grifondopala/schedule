@@ -33,9 +33,8 @@ export function UserProjectsPage(){
     React.useEffect(() => {
         if(!user_id) return;
         const promise = axios({ //get projects from server
-            method: "post",
-            url: `${process.env["REACT_APP_SERVER_IP"]}/projects/getUserProjects`,
-            data: {user_id}
+            method: "get",
+            url: `${process.env["REACT_APP_SERVER_IP"]}/projects/getUserProjects/${user_id}`,
         })
         promise.then((res) => {
             setProjects((state) => res.data.data);
