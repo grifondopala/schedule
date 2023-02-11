@@ -19,7 +19,6 @@ export const SignIn = ({setIsSignIn}:{setIsSignIn: () => void}) => {
     const redirect = useNavigate();
 
     const sendData = () => {
-
         const promise = axios({
             method: 'post',
             url: `${process.env["REACT_APP_SERVER_IP"]}/login`,
