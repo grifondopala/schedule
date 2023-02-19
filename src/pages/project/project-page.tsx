@@ -7,6 +7,9 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import axios from "axios";
+import {ProjectHeader} from "./components/project-header/project-header";
+import {ProjectNavbar} from "./components/project-navbar/project-navbar";
+import {List} from "./components/list/list";
 
 
 export function ProjectPage(){
@@ -15,6 +18,8 @@ export function ProjectPage(){
 
     const dispatch = useDispatch()
 
+    const [selectedPage, setSelectedPage] = React.useState('List')
+
     useEffect(() => {
         if(!id) return;
         let promise = axios({
@@ -22,7 +27,6 @@ export function ProjectPage(){
            url: `${process.env["REACT_APP_SERVER_IP"]}/projects/getProjectById/${id}`,
         })
         promise.then((res) => {
-            console.log(res);
             const project_info = {
                 id: res.data.projectInfo.ID,
                 name: res.data.projectInfo.name,
@@ -32,15 +36,19 @@ export function ProjectPage(){
                 updated_at: res.data.projectInfo.UpdatedAt,
             };
             dispatch({type: 'set-project-info', project_info})
+            dispatch({type: 'set-columns', columns: res.data.columns})
+            dispatch({type: 'set-tasks', tasks: res.data.tasks})
         })
     }, [id, dispatch])
 
     return(
-        <div>
+        <div className={'overflow-x-hidden'}>
             <TopNavbar/>
             <ProjectInfoDrawer />
-            <div>
-
+            <div className={'mt-[80px] w-[calc(100%-4rem)] ml-[2rem] mr-[2rem] flex flex-col'}>
+                <ProjectHeader />
+                <ProjectNavbar selected={selectedPage} setSelected={setSelectedPage} />
+                {selectedPage === 'List' ? <List /> : <></>}
             </div>
         </div>
     )

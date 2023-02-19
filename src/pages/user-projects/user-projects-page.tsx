@@ -6,24 +6,16 @@ import { TopNavbar } from "../../components/top-navbar";
 import { ProjectCard } from "./components/project-card";
 
 
-
 export function UserProjectsPage(){
 
     const user_id = useSelector((state : any) => state.user.id);
     const [projects, setProjects] = React.useState<Array<any>>([])
 
     const createProject = () => {
-        const data = {
-            name: 'Untitled',
-            description: 'No description',
-            icon_src: '/static/project-icons/planning.png',
-            color: 'bg-cyan-100',
-            user_id: user_id,
-        }
         const promise = axios({
             method: 'post',
             url: `${process.env["REACT_APP_SERVER_IP"]}/projects/create`,
-            data,
+            data: {user_id},
         })
         promise.then((res) => {
             setProjects([...projects, res.data.data]);
@@ -37,7 +29,7 @@ export function UserProjectsPage(){
             url: `${process.env["REACT_APP_SERVER_IP"]}/projects/getUserProjects/${user_id}`,
         })
         promise.then((res) => {
-            setProjects((state) => res.data.data);
+            setProjects(() => res.data.data);
         }).catch((e) => {console.log(e)})
     }, [user_id])
 

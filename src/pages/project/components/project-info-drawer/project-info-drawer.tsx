@@ -30,7 +30,7 @@ export function ProjectInfoDrawer(){
             url: `${process.env['REACT_APP_SERVER_IP']}/projects/updateInformation`,
             data
         })
-        promise.then((res) => {
+        promise.then(() => {
             setIsSaveBadgeShown(true);
             setTimeout(() => setIsSaveBadgeShown(false), 2000);
         })

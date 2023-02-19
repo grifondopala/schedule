@@ -1,8 +1,9 @@
 export const colors = [
-    {name: 'Light blue', value: '#CFFAFE'},
-    {name: 'Pink', value: '#BE185D'},
-    {name: 'Emerald', value: '#6EE7B7'},
-    {name: 'Yellow', value: '#FDE047'}
+    {name: 'Blue', value: '#94e6e3'},
+    {name: 'Red', value: '#f96d6d'},
+    {name: 'Green', value: '#a5d162'},
+    {name: 'Yellow', value: '#f8df72'},
+    {name: 'Pink', value: '#f9aaef'}
 ]
 
 export const icons = [
