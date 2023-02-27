@@ -1,16 +1,15 @@
 import * as React from 'react'
-import { TopNavbar } from "../../components/top-navbar";
-import { ProjectInfoDrawer } from "./components/project-info-drawer/project-info-drawer";
-
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import axios from "axios";
-import {ProjectHeader} from "./components/project-header/project-header";
-import {ProjectNavbar} from "./components/project-navbar/project-navbar";
-import {List} from "./components/list/list";
+import { ProjectHeader } from "./components/project-header/project-header";
+import { ProjectNavbar } from "./components/project-navbar/project-navbar";
+import { List } from "./components/list/list";
+import { TopNavbar } from "../../components/top-navbar";
+import { ProjectInfoDrawer } from "./components/project-info-drawer/project-info-drawer";
 
+import axios from "axios";
 
 export function ProjectPage(){
 
@@ -38,6 +37,7 @@ export function ProjectPage(){
             dispatch({type: 'set-project-info', project_info})
             dispatch({type: 'set-columns', columns: res.data.columns})
             dispatch({type: 'set-tasks', tasks: res.data.tasks})
+            dispatch({type: 'set-sections', sections: res.data.sections})
         })
     }, [id, dispatch])
 
