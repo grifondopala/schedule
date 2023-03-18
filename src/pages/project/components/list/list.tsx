@@ -1,8 +1,9 @@
 import * as React from 'react'
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 import { Column } from './column';
 import { Section }  from "./section"
+import { AddColumn } from "./add-column";
 
 import { ColumnModel } from "../../../../models/column";
 import { SectionModel } from "../../../../models/section";
@@ -12,7 +13,7 @@ export function List(){
     const columns: Array<ColumnModel> = useSelector((state: any) => state.project.columns)
     const sections: Array<SectionModel> = useSelector((state: any) => state.project.sections)
 
-    const [isOverlayShown, setIsOverlayShown] = React.useState(false);
+    const [isOverlayShown, setIsOverlayShown] = React.useState(false)
 
     return(
         <>
@@ -37,6 +38,7 @@ export function List(){
             <div className={`fixed w-full left-0 top-0 opacity-60 h-full bg-black z-50 ${isOverlayShown ? 'visible' : 'hidden'}`}
                  onClick={() => setIsOverlayShown(false)}>
             </div>
+            <AddColumn isShown={isOverlayShown} setShown={setIsOverlayShown}/>
         </>
     )
 }

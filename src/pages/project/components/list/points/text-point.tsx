@@ -10,11 +10,11 @@ export function TextPoint({point, pointIndex, taskIndex}: {point: TextPointModel
     const dispatch = useDispatch()
     const width = useSelector((state: any) => state.project.columns[pointIndex].width)
 
-    const inputRef = React.useRef<any>();
+    const inputRef = React.useRef<any>()
     const [value, setValue] = React.useState(point.text)
 
     const onChangeHandler = (e: any) => {
-        setValue(e.target.value);
+        setValue(e.target.value)
     }
 
     const onKeyDownHandler = (e: any) => {
@@ -25,7 +25,7 @@ export function TextPoint({point, pointIndex, taskIndex}: {point: TextPointModel
         dispatch({type: 'change-text-point', pointIndex, taskIndex, text: value})
         const promise = axios({
             method: 'patch',
-            url: `${process.env["REACT_APP_SERVER_IP"]}/textPoint/update`,
+            url: `${process.env["REACT_APP_SERVER_IP"]}/textPoints/update`,
             data: point
         })
         promise.then(() => {}).catch((e) => console.log(e))

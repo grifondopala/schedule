@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 
 export function ProjectHeader(){
 
-    const project_info = useSelector((state: any) => state.project.project_info);
+    const project_info = useSelector((state: any) => state.project.project_info)
 
     return(
         <div className={'flex flex-row items-center'}>

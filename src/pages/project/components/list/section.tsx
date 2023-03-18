@@ -15,6 +15,10 @@ export function Section({section, index}: {section: SectionModel, index: number}
 
     const [isOpen, setIsOpen] = React.useState(true)
 
+    const addNewTask = () => {
+
+    }
+
     return(
         <>
             <div className={'flex flex-row items-center mt-4 select-none'}>
@@ -26,7 +30,7 @@ export function Section({section, index}: {section: SectionModel, index: number}
                 <SectionInput section={section} index={index}/>
                 <div className={`flex flex-row justify-center items-center w-[24px] h-[24px] hover:bg-gray-100 cursor-pointer ml-1 rounded-md`}>
                     <img className={`w-[16px] h-[16px] select-none`}
-                         src={`/images/plus.png`} alt={'plus'}/>
+                         src={`/images/plus.png`} alt={'plus'} onClick={addNewTask}/>
                 </div>
             </div>
             <div className={`flex flex-col mt-2 transition-all duration-300 select-none 

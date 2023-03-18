@@ -35,5 +35,13 @@ export function projectReducer(state = project, action: any){
             let newTasks = [...state.tasks]
             newTasks[action.taskIndex].points[action.pointIndex].text = action.text;
             return {...state, tasks: [...newTasks]}
+        case "add-column":
+            console.log(action)
+            console.log(state)
+            let array = [...state.tasks]
+            action.points.forEach((point: any, index: number) => {
+                array[index].points.push(point);
+            })
+            return {...state, columns: [...state.columns, action.column], tasks: array}
     }
 }

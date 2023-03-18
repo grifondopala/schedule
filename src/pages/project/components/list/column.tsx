@@ -12,10 +12,10 @@ export function Column({column, index}: {column: ColumnModel, index: number}){
 
     const dispatch = useDispatch()
 
-    const [width, setWidth] = React.useState(column.width);
+    const [width, setWidth] = React.useState(column.width)
 
-    const rightBorder = React.useRef<any>();
-    const mainDiv = React.useRef<any>();
+    const rightBorder = React.useRef<any>()
+    const mainDiv = React.useRef<any>()
 
     React.useEffect(() => {
         rightBorder.current.addEventListener('mousedown', (e: any) => {
@@ -23,7 +23,7 @@ export function Column({column, index}: {column: ColumnModel, index: number}){
             window.addEventListener('mouseup', stopResize)
         })
         function resize(e: any) {
-            const newWidth = e.pageX - mainDiv.current.getBoundingClientRect().left;
+            const newWidth = e.pageX - mainDiv.current.getBoundingClientRect().left
             if(newWidth > minWidth && newWidth < maxWidth){
                 setWidth(newWidth)
             }
@@ -37,11 +37,11 @@ export function Column({column, index}: {column: ColumnModel, index: number}){
                 data: {width: new_width, name: column.name, order_number: column.order_number, id: column.ID},
             })
             promise.then(() => {}).catch((e) => {
-                console.log(e);
+                console.log(e)
             })
             dispatch({type: "change-column", index: index, data: {width: new_width}})
         }
-    }, [rightBorder])
+    }, [])
 
     return(
         <>
