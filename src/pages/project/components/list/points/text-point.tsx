@@ -5,7 +5,7 @@ import { TextPointModel } from "../../../../../models/text-point";
 
 import axios from "axios";
 
-export function TextPoint({point, pointIndex, taskIndex}: {point: TextPointModel, pointIndex: number, taskIndex: number}){
+export function TextPoint({point, pointIndex, taskId}: {point: TextPointModel, pointIndex: number, taskId: number}){
 
     const dispatch = useDispatch()
     const width = useSelector((state: any) => state.project.columns[pointIndex].width)
@@ -22,7 +22,7 @@ export function TextPoint({point, pointIndex, taskIndex}: {point: TextPointModel
     }
 
     const onBlurHandler = () => {
-        dispatch({type: 'change-text-point', pointIndex, taskIndex, text: value})
+        dispatch({type: 'change-text-point', pointIndex, taskId, text: value})
         const promise = axios({
             method: 'patch',
             url: `${process.env["REACT_APP_SERVER_IP"]}/textPoints/update`,

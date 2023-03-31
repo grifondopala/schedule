@@ -45,8 +45,8 @@ export function Section({section, index}: {section: SectionModel, index: number}
             </div>
             <div className={`flex flex-col mt-2 transition-all duration-300 select-none 
                             ${isOpen ? 'translate-y-0 opacity-100' : '-translate-y-1/3 opacity-0 pointer-events-none hidden'}`}>
-                {tasks.map((task, index) => (
-                    <Task task={task} taskIndex={index} key={task.task.ID}/>
+                {tasks.map((task) => (
+                    <Task task={task} key={task.task.ID}/>
                 ))}
             </div>
         </>

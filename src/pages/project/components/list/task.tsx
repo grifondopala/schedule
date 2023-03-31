@@ -7,14 +7,14 @@ import { ColumnModel } from "../../../../models/column";
 
 import { TextPoint } from "./points/text-point";
 
-export function Task({task, taskIndex}: {task: TaskModel, taskIndex: number}){
+export function Task({task}: {task: TaskModel}){
 
     const columns: Array<ColumnModel> = useSelector((state: any) => state.project.columns)
 
     function Point({point, pointIndex}: {point: any, pointIndex: number}){
         switch(columns[pointIndex].type){
             case "text-point":
-                return (<TextPoint point={point} pointIndex={pointIndex} taskIndex={taskIndex}/>)
+                return (<TextPoint point={point} pointIndex={pointIndex} taskId={task.task.ID}/>)
             default:
                 return (<div></div>)
         }

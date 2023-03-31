@@ -24,16 +24,17 @@ export function projectReducer(state = project, action: any){
         case "change-project-info":
             return {...state, project_info: {...state.project_info, [action.property]: action.value }}
         case "change-section":
-            let newSections = [...state.sections];
-            newSections[action.index] = {...newSections[action.index], ...action.data};
+            let newSections = [...state.sections]
+            newSections[action.index] = {...newSections[action.index], ...action.data}
             return {...state, sections: [...newSections]}
         case "change-column":
-            let newColumns = [...state.columns];
-            newColumns[action.index] = {...newColumns[action.index], ...action.data};
+            let newColumns = [...state.columns]
+            newColumns[action.index] = {...newColumns[action.index], ...action.data}
             return {...state, columns: [...newColumns]}
         case "change-text-point":
-            let newTasks = [...state.tasks]
-            newTasks[action.taskIndex].points[action.pointIndex].text = action.text;
+            let newTasks = [...state.tasks];
+            let index = newTasks.findIndex((task: TaskModel) => task.task.ID === action.taskId)
+            newTasks[index].points[action.pointIndex].text = action.text
             return {...state, tasks: [...newTasks]}
         case "add-column":
             let array = [...state.tasks]
