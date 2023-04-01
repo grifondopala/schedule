@@ -26,7 +26,6 @@ export function ProjectPage(){
            url: `${process.env["REACT_APP_SERVER_IP"]}/projects/getProjectById/${id}`,
         })
         promise.then((res) => {
-            console.log(res.data)
             const project_info = {
                 id: res.data.projectInfo.ID,
                 name: res.data.projectInfo.name,

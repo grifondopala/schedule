@@ -30,6 +30,7 @@ export function Column({column, index}: {column: ColumnModel, index: number}){
         }
         function stopResize() {
             window.removeEventListener('mousemove', resize)
+            window.removeEventListener('mouseup', stopResize)
             const new_width = rightBorder.current.getBoundingClientRect().left - mainDiv.current.getBoundingClientRect().left
             let promise = axios({
                 method: "patch",

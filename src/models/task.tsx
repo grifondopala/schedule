@@ -11,4 +11,5 @@ export interface Task{
     UpdatedAt: string;
     DeletedAt: string | null;
     CreatedAt: string;
+    done: boolean;
 }

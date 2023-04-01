@@ -31,6 +31,11 @@ export function projectReducer(state = project, action: any){
             let newColumns = [...state.columns]
             newColumns[action.index] = {...newColumns[action.index], ...action.data}
             return {...state, columns: [...newColumns]}
+        case "change-task":
+            let changedTasks = [...state.tasks];
+            let indexTask = changedTasks.findIndex((task: TaskModel) => task.task.ID === action.task.ID)
+            changedTasks[indexTask].task = action.task
+            return {...state}
         case "change-text-point":
             let newTasks = [...state.tasks];
             let index = newTasks.findIndex((task: TaskModel) => task.task.ID === action.taskId)
