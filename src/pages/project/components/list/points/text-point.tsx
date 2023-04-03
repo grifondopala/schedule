@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { TextPointModel } from "../../../../../models/text-point";
 
 import axios from "axios";
-import {Task} from "../../../../../models/task";
+import { Task } from "../../../../../models/task";
 
 export function TextPoint({point, pointIndex, task}: {point: TextPointModel, pointIndex: number, task: Task}){
 
@@ -35,6 +35,12 @@ export function TextPoint({point, pointIndex, task}: {point: TextPointModel, poi
     const DoneCircle = () => {
 
         const changeDone = () => {
+            const promise = axios({
+                url: `${process.env["REACT_APP_SERVER_IP"]}/tasks/update`,
+                method: 'patch',
+                data: {...task, done: !task.done}
+            })
+            promise.then((res) => {})
             dispatch({type: "change-task", task: {...task, done: !task.done}})
         }
 
